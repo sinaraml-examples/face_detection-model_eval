@@ -2,22 +2,25 @@
     "pipeline_params":
     {
         "env_name":"user",
-        "pipeline_name":"pipeline",
-        "zone_name":"zone",
-        "X": "something"
+        "pipeline_name":"face_detect_rest",
+        "zone_name":"test"
     },
-    "step_params":
-    {
-        "Y": "something_else"
-    },
+    "step_params": {},
     "substeps_params":
     [
         {
-            "substep_name":"do_step.ipynb",
+            "substep_name":"run_obj_detector.ipynb",
+            "substep_params":
+            {                
+                "min_score"      : 0.1
+            }
+        },
+        {
+            "substep_name":"eval_obj_detector.ipynb",
             "substep_params":
             {
-                "param1":"None1",
-                "param2":"None2"
+                "threshold_iou" : 0.5,
+                "threshold_MAp05": 0.008
             }
         }
     ]
